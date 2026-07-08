@@ -61,35 +61,66 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 # Run the full test suite:
 pytest
 
+    ![alt text](image-1.png)
+
 # Run with coverage:
 pytest --cov
 ```
+    ![alt text](image-2.png)
 
 Sample test output:
 
 ```
 # Paste your pytest output here
 ```
+    plugins: anyio-4.14.0
+    collected 6 items                                 
+
+    tests/tests/test_pawpal.py::test_mark_complete_changes_status PASSED [ 16%]
+    tests/tests/test_pawpal.py::test_add_task_increases_count PASSED [ 33%]
+    tests/tests/test_pawpal.py::test_sort_by_time PASSED [ 50%]
+    tests/tests/test_pawpal.py::test_conflict_detection PASSED [ 66%]
+    tests/tests/test_pawpal.py::test_recurring_daily_task PASSED [ 83%]
+    tests/tests/test_pawpal.py::test_filter_by_status PASSED [100%]
+
+    =============== 6 passed in 0.04s ================
+
+
+    plugins: anyio-4.14.0, cov-7.1.0
+    collected 6 items                                 
+
+    tests\tests\test_pawpal.py ......           [100%]
+
+    ================= tests coverage =================
+    _ coverage: platform win32, python 3.13.14-final-0 _
+
+    Name               Stmts   Miss  Cover
+    --------------------------------------
+    pawpal_system.py      71      8    89%
+    --------------------------------------
+    TOTAL                 71      8    89%
+    =============== 6 passed in 0.09s ================
 
 ## 📐 Smarter Scheduling
 
 > Fill in once you've implemented scheduling logic.
 
-| Feature | Method(s) | Notes |
-|---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Feature           | Method(s)                        | Notes                              |
+| ----------------- | -------------------------------- | ---------------------------------- |
+| Task sorting      | Scheduler.sort_by_time()         | Sorts by HH:MM string              |
+| Filtering         | Scheduler.filter_by_status()     | Filters by completion status       |
+| Conflict handling | Scheduler.detect_conflicts()     | Warns on exact time matches        |
+| Recurring tasks   | Task.mark_complete()             | Creates next-day task if daily     |
 
 ## 📸 Demo Walkthrough
 
 Describe your app in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User opens the app and enters owner name "Jordan"
+2. User adds a pet: "Biscuit" (dog)
+3. User adds tasks: Morning walk at 08:00 (high priority), Feeding at 09:00 (high), Evening walk at 17:00 (medium)
+4. User clicks "Generate Schedule" — tasks appear sorted by time in a table
+5. User adds a second task also at 08:00 — a conflict warning appears in orange
+6. User marks Morning walk complete — a new daily task is auto-scheduled for tomorrow
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
