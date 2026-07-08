@@ -8,7 +8,7 @@ dog.add_task(Task("Morning walk", "08:00", 30, "high", "daily"))
 dog.add_task(Task("Feeding", "09:00", 10, "high", "daily"))
 dog.add_task(Task("Evening walk", "17:00", 30, "medium", "daily"))
 cat.add_task(Task("Feeding", "08:00", 5, "high", "daily"))
-cat.add_task(Task("Medication", "09:00", 5, "high", "daily"))
+cat.add_task(Task("Medication", "08:00", 5, "high", "daily"))
 
 owner.add_pet(dog)
 owner.add_pet(cat)
