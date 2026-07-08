@@ -1,4 +1,5 @@
 classDiagram
+
     class Task {
         +String description
         +String time
@@ -6,27 +7,35 @@ classDiagram
         +String priority
         +String frequency
         +bool completed
+        +date due_date
+        +Pet pet_ref
         +mark_complete()
     }
+
     class Pet {
         +String name
         +String species
-        +List tasks
+        +List~Task~ tasks
         +add_task(task)
         +get_tasks()
     }
+
     class Owner {
         +String name
-        +List pets
+        +List~Pet~ pets
         +add_pet(pet)
         +get_all_tasks()
     }
+
     class Scheduler {
         +Owner owner
         +sort_by_time()
         +filter_by_status(completed)
+        +filter_by_pet(pet_name)
         +detect_conflicts()
     }
-    Owner "1" --> "many" Pet : owns
-    Pet "1" --> "many" Task : has
-    Scheduler --> Owner : reads from
+
+    Owner "1" --> "1..*" Pet : owns
+    Pet "1" --> "0..*" Task : has
+    Task "1" --> "1" Pet : pet_ref back-link
+    Scheduler "1" --> "1" Owner : reads from
